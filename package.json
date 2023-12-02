@@ -1,0 +1,17 @@
+{
+  "name": "advent-of-code",
+  "version": "1.0.0",
+  "main": "src/app.ts",
+  "author": "Samuel Janssen",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^20.10.1",
+    "typescript": "^5.3.2"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1"
+  },
+  "scripts": {
+    "start": "sh -c 'ts-node src/day-${0}/part-${1}.ts'"
+  }
+}
