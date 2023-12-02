@@ -1,6 +1,7 @@
-import { createReadStream } from 'node:fs';
-import { createInterface } from 'node:readline';
 import { resolve } from 'node:path';
+
+const file = await Bun.file(resolve(import.meta.dir, './input.txt')).text();
+const lines = file.split('\n');
 
 const parseInput = (input: string) => {
   const game = input.split(': ')[1];
@@ -26,19 +27,12 @@ const getMinPowerSet = (handfuls: string[]) => {
   return Object.values(minMap).reduce((acc, curr) => acc * curr, 1);
 };
 
-(async () => {
-  const fileStream = createReadStream(resolve(__dirname, './input.txt'));
-  const rl = createInterface({
-    input: fileStream,
-  });
+let result = 0;
 
-  let result = 0;
+for await (const line of lines) {
+  const handfuls = parseInput(line);
+  const minPowerSet = getMinPowerSet(handfuls);
+  result += minPowerSet;
+}
 
-  for await (const line of rl) {
-    const handfuls = parseInput(line);
-    const minPowerSet = getMinPowerSet(handfuls);
-    result += minPowerSet;
-  }
-
-  console.log(result);
-})();
+console.log(result);

@@ -1,6 +1,7 @@
-import { createReadStream } from 'node:fs';
-import { createInterface } from 'node:readline';
 import { resolve } from 'node:path';
+
+const file = await Bun.file(resolve(import.meta.dir, './input.txt')).text();
+const lines = file.split('\n');
 
 const maxMap: Record<string, number> = {
   red: 12,
@@ -37,21 +38,14 @@ const checkHandfuls = (handfuls: string[]) => {
   return true;
 };
 
-(async () => {
-  const fileStream = createReadStream(resolve(__dirname, './input.txt'));
-  const rl = createInterface({
-    input: fileStream,
-  });
+let result = 0;
 
-  let result = 0;
-
-  for await (const line of rl) {
-    const { id, handfuls } = parseInput(line);
-    const passedChecks = checkHandfuls(handfuls);
-    if (passedChecks) {
-      result += id;
-    }
+for (const line of lines) {
+  const { id, handfuls } = parseInput(line);
+  const passedChecks = checkHandfuls(handfuls);
+  if (passedChecks) {
+    result += id;
   }
+}
 
-  console.log(result);
-})();
+console.log(result);
