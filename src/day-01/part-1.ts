@@ -2,7 +2,7 @@ import { createReadStream } from 'node:fs';
 import { createInterface } from 'node:readline';
 import { resolve } from 'node:path';
 
-const main = async () => {
+(async () => {
   const fileStream = createReadStream(resolve(__dirname, './input.txt'), 'utf-8');
   const rl = createInterface({
     input: fileStream,
@@ -18,6 +18,4 @@ const main = async () => {
   }
 
   console.log(result);
-};
-
-main();
+})();

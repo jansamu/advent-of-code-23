@@ -26,7 +26,7 @@ const checkHandfuls = (handfuls: string[]) => {
   return Object.values(minMap).reduce((acc, curr) => acc * curr, 1);
 };
 
-const main = async () => {
+(async () => {
   const fileStream = createReadStream(resolve(__dirname, './input.txt'), 'utf-8');
   const rl = createInterface({
     input: fileStream,
@@ -41,6 +41,4 @@ const main = async () => {
   }
 
   console.log(result);
-};
-
-main();
+})();
