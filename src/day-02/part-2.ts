@@ -13,7 +13,7 @@ const getMinPowerSet = (handfuls: string[]) => {
   const minMap: Record<string, number> = {};
   for (const handful of handfuls) {
     const counts = handful.split(', ');
-    ('test');
+
     for (const count of counts) {
       const [valueString, colour] = count.split(' ');
       const value = Number(valueString);
