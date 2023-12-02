@@ -3,13 +3,13 @@ import { createInterface } from 'node:readline';
 import { resolve } from 'node:path';
 
 const parseInput = (input: string) => {
-  const [_, game] = input.split(': ');
+  const game = input.split(': ')[1];
   const handfuls = game.split('; ');
 
   return handfuls;
 };
 
-const checkHandfuls = (handfuls: string[]) => {
+const getMinPowerSet = (handfuls: string[]) => {
   const minMap: Record<string, number> = {};
   for (const handful of handfuls) {
     const counts = handful.split(', ');
@@ -27,7 +27,7 @@ const checkHandfuls = (handfuls: string[]) => {
 };
 
 (async () => {
-  const fileStream = createReadStream(resolve(__dirname, './input.txt'), 'utf-8');
+  const fileStream = createReadStream(resolve(__dirname, './input.txt'));
   const rl = createInterface({
     input: fileStream,
   });
@@ -36,8 +36,8 @@ const checkHandfuls = (handfuls: string[]) => {
 
   for await (const line of rl) {
     const handfuls = parseInput(line);
-    const count = checkHandfuls(handfuls);
-    result += count;
+    const minPowerSet = getMinPowerSet(handfuls);
+    result += minPowerSet;
   }
 
   console.log(result);

@@ -3,7 +3,7 @@ import { createInterface } from 'node:readline';
 import { resolve } from 'node:path';
 
 (async () => {
-  const fileStream = createReadStream(resolve(__dirname, './input.txt'), 'utf-8');
+  const fileStream = createReadStream(resolve(__dirname, './input.txt'));
   const rl = createInterface({
     input: fileStream,
   });

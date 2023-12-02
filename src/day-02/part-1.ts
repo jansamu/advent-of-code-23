@@ -38,7 +38,7 @@ const checkHandfuls = (handfuls: string[]) => {
 };
 
 (async () => {
-  const fileStream = createReadStream(resolve(__dirname, './input.txt'), 'utf-8');
+  const fileStream = createReadStream(resolve(__dirname, './input.txt'));
   const rl = createInterface({
     input: fileStream,
   });

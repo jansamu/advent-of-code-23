@@ -14,7 +14,7 @@ const digitMap: Record<string, string> = {
   nine: '9',
 };
 
-const digitRegexp = /(?=(\d|one|two|three|four|five|six|seven|eight|nine))/g;
+const digitRegexp = new RegExp(`(?=(\\d|${Object.keys(digitMap).join('|')}))`, 'g');
 
 const parseDigit = (digit: string | undefined) => {
   if (digit && digitMap.hasOwnProperty(digit)) {
@@ -24,7 +24,7 @@ const parseDigit = (digit: string | undefined) => {
 };
 
 (async () => {
-  const fileStream = createReadStream(resolve(__dirname, './input.txt'), 'utf-8');
+  const fileStream = createReadStream(resolve(__dirname, './input.txt'));
   const rl = createInterface({
     input: fileStream,
   });
