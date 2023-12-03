@@ -19,6 +19,10 @@ for (let j = 0; j < height; j++) {
       let hasSymbol = false;
 
       for (let x = i - numString.length; x <= i + 1; x++) {
+        if (hasSymbol) {
+          break;
+        }
+
         if (x < 0 || x >= width) {
           continue;
         }
@@ -30,6 +34,7 @@ for (let j = 0; j < height; j++) {
 
           if (grid[y][x].match(/[^\d.]/)) {
             hasSymbol = true;
+            break;
           }
         }
       }
