@@ -1,5 +1,5 @@
 {
   "tasks": {
-    "start": "sh -c 'deno run --allow-read=. src/day-${0}/part-${1}.ts'"
+    "start": "sh -c 'deno run --allow-read=. src/day-$(printf \"%02d\" ${0})/part-${1}.ts'"
   }
 }
