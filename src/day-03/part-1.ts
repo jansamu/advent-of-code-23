@@ -14,8 +14,7 @@ for (let i = 0; i < height; i++) {
       let numString = grid[i][j];
 
       while (grid[i][j + 1] && grid[i][j + 1].match(/\d/)) {
-        j++;
-        numString = numString.concat(grid[i][j]);
+        numString = numString.concat(grid[i][++j]);
       }
 
       let hasSymbol = false;
