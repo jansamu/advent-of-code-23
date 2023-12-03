@@ -1,6 +1,4 @@
-import { resolve } from 'node:path';
-
-const file = await Bun.file(resolve(import.meta.dir, './input.txt')).text();
+const file = await Deno.readTextFile(new URL('./input.txt', import.meta.url));
 const lines = file.split('\n');
 
 let result = 0;

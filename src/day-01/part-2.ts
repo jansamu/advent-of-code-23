@@ -1,6 +1,4 @@
-import { resolve } from 'node:path';
-
-const file = await Bun.file(resolve(import.meta.dir, './input.txt')).text();
+const file = await Deno.readTextFile(new URL('./input.txt', import.meta.url));
 const lines = file.split('\n');
 
 const digitMap: Record<string, string> = {
@@ -15,10 +13,13 @@ const digitMap: Record<string, string> = {
   nine: '9',
 };
 
-const digitRegexp = new RegExp(`(?=(\\d|${Object.keys(digitMap).join('|')}))`, 'g');
+const digitRegexp = new RegExp(
+  `(?=(\\d|${Object.keys(digitMap).join('|')}))`,
+  'g'
+);
 
 const parseDigit = (digit: string | undefined) => {
-  if (digit && digitMap.hasOwnProperty(digit)) {
+  if (digit && digitMap[digit]) {
     return digitMap[digit];
   }
   return digit;
@@ -27,7 +28,7 @@ const parseDigit = (digit: string | undefined) => {
 let result = 0;
 
 for (const line of lines) {
-  const matches = Array.from(line.matchAll(digitRegexp), m => m[1]);
+  const matches = Array.from(line.matchAll(digitRegexp), (m) => m[1]);
   const first = parseDigit(matches[0]);
   const last = parseDigit(matches[matches.length - 1]);
 
