@@ -11,18 +11,16 @@ for (let i = 0; i < height; i++) {
   for (let j = 0; j < height; j++) {
     if (grid[i][j].match(/\d/)) {
       const numStart = j;
-      let numLength = 1;
       let numString = grid[i][j];
 
       while (grid[i][j + 1] && grid[i][j + 1].match(/\d/)) {
-        j += 1;
-        numLength++;
+        j++;
         numString = numString.concat(grid[i][j]);
       }
 
       let hasSymbol = false;
 
-      for (let x = numStart - 1; x <= numStart + numLength; x++) {
+      for (let x = numStart - 1; x <= j + 1; x++) {
         if (x < 0 || x >= width) {
           continue;
         }
