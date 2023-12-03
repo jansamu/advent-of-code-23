@@ -7,17 +7,17 @@ const height = grid.length;
 
 let result = 0;
 
-for (let i = 0; i < height; i++) {
-  for (let j = 0; j < width; j++) {
-    if (grid[i][j] === '*') {
+for (let j = 0; j < height; j++) {
+  for (let i = 0; i < width; i++) {
+    if (grid[j][i] === '*') {
       const matches = [];
 
-      for (let y = i - 1; y <= i + 1; y++) {
+      for (let y = j - 1; y <= j + 1; y++) {
         if (y < 0 || y >= height) {
           continue;
         }
 
-        for (let x = j - 1; x <= j + 1; x++) {
+        for (let x = i - 1; x <= i + 1; x++) {
           if (x < 0 || x >= width) {
             continue;
           }

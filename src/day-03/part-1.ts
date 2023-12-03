@@ -7,24 +7,24 @@ const height = grid.length;
 
 let result = 0;
 
-for (let i = 0; i < height; i++) {
-  for (let j = 0; j < height; j++) {
-    if (grid[i][j].match(/\d/)) {
-      const numStart = j;
-      let numString = grid[i][j];
+for (let j = 0; j < height; j++) {
+  for (let i = 0; i < height; i++) {
+    if (grid[j][i].match(/\d/)) {
+      const numStart = i;
+      let numString = grid[j][i];
 
-      while (grid[i][j + 1] && grid[i][j + 1].match(/\d/)) {
-        numString = numString.concat(grid[i][++j]);
+      while (grid[j][i + 1] && grid[j][i + 1].match(/\d/)) {
+        numString = numString.concat(grid[j][++i]);
       }
 
       let hasSymbol = false;
 
-      for (let x = numStart - 1; x <= j + 1; x++) {
+      for (let x = numStart - 1; x <= i + 1; x++) {
         if (x < 0 || x >= width) {
           continue;
         }
 
-        for (let y = i - 1; y <= i + 1; y++) {
+        for (let y = j - 1; y <= j + 1; y++) {
           if (y < 0 || y >= height) {
             continue;
           }
