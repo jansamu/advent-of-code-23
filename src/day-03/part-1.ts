@@ -10,7 +10,6 @@ let result = 0;
 for (let j = 0; j < height; j++) {
   for (let i = 0; i < height; i++) {
     if (grid[j][i].match(/\d/)) {
-      const numStart = i;
       let numString = grid[j][i];
 
       while (grid[j][i + 1] && grid[j][i + 1].match(/\d/)) {
@@ -19,7 +18,7 @@ for (let j = 0; j < height; j++) {
 
       let hasSymbol = false;
 
-      for (let x = numStart - 1; x <= i + 1; x++) {
+      for (let x = i - numString.length; x <= i + 1; x++) {
         if (x < 0 || x >= width) {
           continue;
         }

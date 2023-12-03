@@ -25,14 +25,13 @@ for (let j = 0; j < height; j++) {
           if (grid[y][x].match(/\d/)) {
             // Find the start of the number
             while (grid[y][x - 1] && grid[y][x - 1].match(/\d/)) {
-              x -= 1;
+              x--;
             }
 
             let numString = grid[y][x];
 
             while (grid[y][x + 1] && grid[y][x + 1].match(/\d/)) {
-              x += 1;
-              numString = numString.concat(grid[y][x]);
+              numString = numString.concat(grid[y][++x]);
             }
 
             matches.push(Number(numString));
