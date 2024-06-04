@@ -4,7 +4,7 @@ const sections = file.split('\n\n');
 
 const [seedsString, ...mapsStrings] = sections;
 
-const seedRanges = seedsString.split(' ').slice(1).map(Number);
+const seedRangess = seedsString.split(' ').slice(1).map(Number);
 const rangeSets = mapsStrings.map((mapString) =>
   mapString
     .split('\n')
@@ -14,9 +14,9 @@ const rangeSets = mapsStrings.map((mapString) =>
 
 let result = Infinity;
 
-for (let i = 0; i < seedRanges.length; i += 2) {
-  console.log(i, seedRanges.length);
-  const [seedRangeStart, seedRangeLength] = seedRanges.slice(i, i + 2);
+for (let i = 0; i < seedRangess.length; i += 2) {
+  console.log(i, seedRangess.length);
+  const [seedRangeStart, seedRangeLength] = seedRangess.slice(i, i + 2);
   for (
     let seed = seedRangeStart;
     seed < seedRangeStart + seedRangeLength;
